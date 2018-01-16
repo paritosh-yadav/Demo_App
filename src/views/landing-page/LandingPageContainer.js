@@ -86,21 +86,15 @@ class LandingPageContainer extends Component {
 	}
 
 	setFavorites(city) {
-		console.log(this.props);
-		let favoritesList = this.props.favorites;
-		if (this.props.favorites.indexOf(city) > -1) {
-			var index = this.props.favorites.indexOf(city);
+		var favoritesList = this.props.favorites.slice();
+		if (favoritesList.indexOf(city) > -1) {
+			var index = favoritesList.indexOf(city);
 			if (index !== -1) {
-				this.props.favorites.splice(index, 1);
+				favoritesList.splice(index, 1);
 			}
-			// this.props.favorites = this.props.favorites.filter(e => e !== city)
-			// console.log('if', favoritesList);
-			console.log('this.props.favorites', this.props.favorites);
 			this.props.removeFavoriteCity(favoritesList);
 		} else {
-			this.props.favorites.push(city);
-			console.log('this.props.favorites', this.props.favorites);
-			// console.log('else', favoritesList);
+			favoritesList.push(city);
 			this.props.addFavoriteCity(favoritesList);
 		}
 	}
@@ -135,7 +129,7 @@ class LandingPageContainer extends Component {
 	}
 
 	redirectToDetails(item) {
-		this.props.navigation.navigate('cityDetails', {selectedCity: item});
+		this.props.navigation.navigate('cityDetails', { selectedCity: item });
 	}
 	render() {
 		return (

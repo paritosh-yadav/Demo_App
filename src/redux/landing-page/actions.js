@@ -43,7 +43,6 @@ export function fetchCityData() {
         return data;
       })
       .catch((err) => {
-        console.log('err:', err);
         dispatch(getCityDataFailure());
         return err;
       })
@@ -70,7 +69,6 @@ export function getWeatherDataFailure() {
 }
 
 export function fetchWeatherData(q, appid, units) {
-  console.log(q, appid, units);
   return (dispatch) => {
     dispatch(getWeatherData())
     return axios.get('http://api.openweathermap.org/data/2.5/forecast',
@@ -83,12 +81,10 @@ export function fetchWeatherData(q, appid, units) {
       }
     )
       .then(function (response) {
-        console.log('response', response);
         dispatch(getWeatherDataSuccess(response.data))
         return response.data;
       })
       .catch(function (error) {
-        console.log('error', error);
         dispatch(getWeatherDataFailure());
         return error;
       });
@@ -103,7 +99,6 @@ export function addFavorite(data) {
 }
 
 export function addFavoriteCity(data) {
-  console.log('add', data);
   return (dispatch) => {
     dispatch(addFavorite(data))
   }
@@ -118,7 +113,6 @@ export function removeFavorite(data) {
 }
 
 export function removeFavoriteCity(data) {
-  console.log('remove', data);
   return (dispatch) => {
     dispatch(removeFavorite(data))
   }
